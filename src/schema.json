@@ -1,32 +1,276 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://example.com/example.json",
   "type": "object",
+  "title": "Discord bot config generator",
+  "description": "Enter your details below.",
+  "default": {},
+  "examples": [
+    {
+      "username": "user4",
+      "password": "password4",
+      "discord_login": {
+        "token": "NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpgaqPYJGEn5cT4gFKBsnlrk",
+        "imgur_id": "32d4aa908e8018b"
+      },
+      "authserver": "http://localhost:8000/verify",
+      "mongourl": "mongodb+srv://test:testpassword29@cluster0.8z4sc.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+      "logfilename": "project.log",
+      "messages": [
+        {
+          "message": "This is First Message",
+          "image": "/home/silox/Pictures/image1.jpeg"
+        },
+        {
+          "message": "This is second message",
+          "image": "/home/silox/Pictures/image2.jpg"
+        }
+      ],
+      "channels": [
+        {
+          "server_id": "",
+          "channel_id": "898129644522459136",
+          "post_every": 0.5,
+          "image": true
+        },
+        {
+          "server_id": "",
+          "channel_id": "898129680144670720",
+          "post_every": 0.5,
+          "image": true
+        }
+      ]
+    }
+  ],
+  "required": [
+    "username",
+    "password",
+    "discord_login",
+    "authserver",
+    "mongourl",
+    "logfilename",
+    "messages",
+    "channels"
+  ],
   "properties": {
-    "name": {
+    "username": {
+      "$id": "#/properties/username",
       "type": "string",
-      "minLength": 1
+      "title": "Your discord-bot username",
+      "description": "Enter your username.",
+      "default": "",
+      "examples": [
+        "user4"
+      ]
     },
-    "description": {
-      "title": "Long Description",
-      "type": "string"
-    },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
+    "password": {
+      "$id": "#/properties/password",
       "type": "string",
-      "format": "date"
+      "title": "Your discord-bot password",
+      "description": "Enter your password",
+      "default": "",
+      "examples": [
+        "password4"
+      ]
     },
-    "rating": {
-      "type": "integer",
-      "maximum": 5
+    "discord_login": {
+      "$id": "#/properties/discord_login",
+      "type": "object",
+      "title": "Tokens",
+      "description": "Enter your tokens here",
+      "default": {},
+      "examples": [
+        {
+          "token": "NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpgaqPYJGEn5cT4gFKBsnlrk",
+          "imgur_id": "32d4aa908e8018b"
+        }
+      ],
+      "required": [
+        "token",
+        "imgur_id"
+      ],
+      "properties": {
+        "token": {
+          "$id": "#/properties/discord_login/properties/token",
+          "type": "string",
+          "title": "Discord token",
+          "description": "Can be found in the Local Storage of chrome dev tools",
+          "default": "",
+          "examples": [
+            "NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.test2099"
+          ]
+        },
+        "imgur_id": {
+          "$id": "#/properties/discord_login/properties/imgur_id",
+          "type": "string",
+          "title": "Imgur token",
+          "description": "Enter you Imgur client id",
+          "default": "",
+          "examples": [
+            "32d4aa908e8019b"
+          ]
+        }
+      },
+      "additionalProperties": false
     },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
+    "messages": {
+      "$id": "#/properties/messages",
+      "type": "array",
+      "title": "Messages",
+      "description": "Write messages to send",
+      "default": [],
+      "examples": [
+        [
+          {
+            "message": "This is First Message",
+            "image": "/home/silox/Pictures/image1.jpeg"
+          },
+          {
+            "message": "This is second message",
+            "image": "/home/silox/Pictures/image2.jpg"
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/messages/items",
+        "allOf": [
+          {
+            "$id": "#/properties/messages/items/allOf/0",
+            "type": "object",
+            "title": "Enter your message below",
+            "description": "",
+            "default": {},
+            "examples": [
+              {
+                "message": "This is First Message",
+                "image": "/home/silox/Pictures/image1.jpeg"
+              }
+            ],
+            "required": [
+              "message",
+              "image"
+            ],
+            "properties": {
+              "message": {
+                "$id": "#/properties/messages/items/anyOf/0/properties/message",
+                "type": "string",
+                "title": "Message",
+                "description": "",
+                "default": "",
+                "examples": [
+                  "This is First Message"
+                ]
+              },
+              "image": {
+                "$id": "#/properties/messages/items/anyOf/0/properties/image",
+                "type": "string",
+                "title": "Path to image",
+                "description": "Enter full path",
+                "default": "",
+                "examples": [
+                  "/home/silox/Pictures/image1.jpeg"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
     },
-    "recurrence_interval": {
-      "type": "integer"
+    "channels": {
+      "$id": "#/properties/channels",
+      "type": "array",
+      "title": "Channels",
+      "description": "Details about channels to send messages to.",
+      "default": [],
+      "examples": [
+        [
+          {
+            "server_id": "",
+            "channel_id": "898129644522459136",
+            "post_every": 0.5,
+            "image": true
+          },
+          {
+            "server_id": "",
+            "channel_id": "898129680144670720",
+            "post_every": 0.5,
+            "image": true
+          }
+        ]
+      ],
+      "additionalItems": true,
+      "items": {
+        "$id": "#/properties/channels/items",
+        "allOf": [
+          {
+            "$id": "#/properties/channels/items/allOf/0",
+            "type": "object",
+            "title": "Channel",
+            "description": "Details about channel",
+            "default": {},
+            "examples": [
+              {
+                "server_id": "",
+                "channel_id": "898129644522459136",
+                "post_every": 0.5,
+                "image": true
+              }
+            ],
+            "required": [
+              "server_id",
+              "channel_id",
+              "post_every",
+              "image"
+            ],
+            "properties": {
+              "server_id": {
+                "$id": "#/properties/channels/items/anyOf/0/properties/server_id",
+                "type": "string",
+                "title": "server_id",
+                "description": "Server id of the channel belongs to",
+                "default": "",
+                "examples": [
+                  ""
+                ]
+              },
+              "channel_id": {
+                "$id": "#/properties/channels/items/anyOf/0/properties/channel_id",
+                "type": "string",
+                "title": "channel_id",
+                "description": "Id of channel to post to",
+                "default": "",
+                "examples": [
+                  "898129644522459136"
+                ]
+              },
+              "post_every": {
+                "$id": "#/properties/channels/items/anyOf/0/properties/post_every",
+                "type": "number",
+                "title": "Time between 2 messages",
+                "description": "Enter time in minutes",
+                "default": 5.0,
+                "examples": [
+                  0.5
+                ]
+              },
+              "image": {
+                "$id": "#/properties/channels/items/anyOf/0/properties/image",
+                "type": "boolean",
+                "title": "Contains image?",
+                "description": "Check if image is posted.",
+                "default": false,
+                "examples": [
+                  true
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
     }
   },
-  "required": ["name", "due_date"]
+  "additionalProperties": false
 }

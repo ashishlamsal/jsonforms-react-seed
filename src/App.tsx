@@ -14,6 +14,7 @@ import {
 import RatingControl from './RatingControl';
 import ratingControlTester from './ratingControlTester';
 import { makeStyles } from '@material-ui/core/styles';
+import { saveAs } from 'file-saver';
 
 const useStyles = makeStyles((_theme) => ({
   container: {
@@ -42,11 +43,26 @@ const useStyles = makeStyles((_theme) => ({
 }));
 
 const initialData = {
-  name: 'Send email to Adrian',
-  description: 'Confirm if you have passed the subject\nHereby ...',
-  done: true,
-  recurrence: 'Daily',
-  rating: 3,
+  username: 'user4',
+  password: 'password4',
+  discord_login: {
+    token: 'NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpgaqPYJGEn5cT4gFKBsnlrk',
+    imgur_id: "32d4aa908e8018b",
+  },
+  messages: [
+    {
+      message: "This is First Message",
+      image: "/home/silox/Pictures/image1.jpeg"
+    },
+  ],
+  channels: [
+    {
+      server_id: "1",
+      channel_id: "898129644522459136",
+      post_every: 0.5,
+      image: true
+    },
+  ]
 };
 
 const renderers = [
@@ -65,15 +81,19 @@ const App = () => {
   }, [jsonformsData]);
 
   const clearData = () => {
-    setJsonformsData({});
+    // setJsonformsData({});
+    var blob = new Blob([JSON.stringify(jsonformsData, null, 2)], {type: "text/plain;charset=utf-8"});
+    saveAs(blob, 'config.json');
+    // FileSaver.saveAs(blob, "hello world.txt");
+    // console.log(JSON.stringify(jsonformsData, null, 2));
   };
 
   return (
     <Fragment>
       <div className='App'>
         <header className='App-header'>
-          <img src={logo} className='App-logo' alt='logo' />
-          <h1 className='App-title'>Welcome to JSON Forms with React</h1>
+          {/* <img src={logo} className='App-logo' alt='logo' /> */}
+          <h1 className='App-title'>Welcome to Discord Bot</h1>
           <p className='App-intro'>More Forms. Less Code.</p>
         </header>
       </div>
@@ -86,7 +106,7 @@ const App = () => {
       >
         <Grid item sm={6}>
           <Typography variant={'h3'} className={classes.title}>
-            Bound data
+            JSON data
           </Typography>
           <div className={classes.dataContent}>
             <pre id='boundData'>{displayDataAsString}</pre>
@@ -97,7 +117,7 @@ const App = () => {
             color='primary'
             variant='contained'
           >
-            Clear data
+            Download
           </Button>
         </Grid>
         <Grid item sm={6}>
