@@ -52,26 +52,26 @@ const useStyles = makeStyles((_theme) => ({
 }));
 
 const initialData = {
-  username: 'user4',
-  password: 'password4',
-  discord_login: {
-    token: 'NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpdgaqPYJGEn5cT4gFKBsnlrk',
-    imgur_id: "32d4aa908e8018b",
-  },
-  messages: [
-    {
-      message: "This is First Message",
-      image: "/home/silox/Pictures/image1.jpeg"
-    },
-  ],
-  channels: [
-    {
-      server_id: "1",
-      channel_id: "898129644522459136",
-      post_every: 0.5,
-      image: true
-    },
-  ]
+  // username: 'johndoe',
+  // password: 'password4',
+  // discord_login: {
+  //   token: 'NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpdgaqPYJGEn5cT4gFKBsnlrk',
+  //   imgur_id: "32d4aa908e8018b",
+  // },
+  // messages: [
+  //   {
+  //     message: "This is First Message",
+  //     image: "/home/silox/Pictures/image1.jpeg"
+  //   },
+  // ],
+  // channels: [
+  //   {
+  //     server_id: "1",
+  //     channel_id: "898129644522459136",
+  //     post_every: 0.5,
+  //     image: true
+  //   },
+  // ]
 };
 
 const renderers = [
@@ -117,12 +117,28 @@ const App = () => {
         spacing={1}
         className={classes.container}
       >
-        <Grid item sm={6}>
+        {/* <Grid item sm={12}>
           <Typography variant={'h3'} className={classes.title}>
             JSON data
           </Typography>
           <div className={classes.dataContent}>
             <pre id='boundData'>{displayDataAsString}</pre>
+          </div>
+
+        </Grid> */}
+        <Grid item sm={10}>
+          <Typography variant={'h3'} className={classes.title}>
+            Config Generator
+          </Typography>
+          <div className={classes.demoform}>
+            <JsonForms
+              schema={schema}
+              uischema={uischema}
+              data={jsonformsData}
+              renderers={renderers}
+              cells={materialCells}
+              onChange={({ errors, data }) => setJsonformsData(data)}
+            />
           </div>
           <div className={classes.button}>
           <Button
@@ -141,21 +157,6 @@ const App = () => {
           >
             Clear
           </Button>
-          </div>
-        </Grid>
-        <Grid item sm={6}>
-          <Typography variant={'h3'} className={classes.title}>
-            Rendered form
-          </Typography>
-          <div className={classes.demoform}>
-            <JsonForms
-              schema={schema}
-              uischema={uischema}
-              data={jsonformsData}
-              renderers={renderers}
-              cells={materialCells}
-              onChange={({ errors, data }) => setJsonformsData(data)}
-            />
           </div>
         </Grid>
       </Grid>

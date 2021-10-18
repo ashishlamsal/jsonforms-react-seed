@@ -57,7 +57,7 @@
       "$id": "#/properties/username",
       "type": "string",
       "title": "Your discord-bot username",
-      "description": "Enter your username.",
+      "description": "Enter your username. (eg. john)",
       "default": "",
       "examples": [
         "user4"
@@ -67,7 +67,7 @@
       "$id": "#/properties/password",
       "type": "string",
       "title": "Your discord-bot password",
-      "description": "Enter your password",
+      "description": "Enter your password. (eg. johnjohn1)",
       "default": "",
       "examples": [
         "password4"
@@ -94,7 +94,7 @@
           "$id": "#/properties/discord_login/properties/token",
           "type": "string",
           "title": "Discord token",
-          "description": "Can be found in the Local Storage of chrome dev tools",
+          "description": "Can be found in the Local Storage of chrome dev tools (eg. NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.test2099)",
           "default": "",
           "examples": [
             "NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.test2099"
@@ -104,7 +104,7 @@
           "$id": "#/properties/discord_login/properties/imgur_id",
           "type": "string",
           "title": "Imgur token",
-          "description": "Enter you Imgur client id",
+          "description": "Enter you Imgur client id (eg. 32d4aa908e8019b)",
           "default": "",
           "examples": [
             "32d4aa908e8019b"
@@ -156,7 +156,7 @@
                 "$id": "#/properties/messages/items/anyOf/0/properties/message",
                 "type": "string",
                 "title": "Message",
-                "description": "",
+                "description": "Enter your message here (eg. This is a Message)",
                 "default": "",
                 "examples": [
                   "This is First Message"
@@ -166,7 +166,7 @@
                 "$id": "#/properties/messages/items/anyOf/0/properties/image",
                 "type": "string",
                 "title": "Path to image",
-                "description": "Enter full path",
+                "description": "Enter full path (eg. C:\\home\\silox\\Pictures\\image1.jpeg)",
                 "default": "",
                 "examples": [
                   "/home/silox/Pictures/image1.jpeg"
@@ -229,7 +229,7 @@
                 "$id": "#/properties/channels/items/anyOf/0/properties/server_id",
                 "type": "string",
                 "title": "server_id",
-                "description": "Server id of the channel belongs to",
+                "description": "Enter server ID (eg. 1)",
                 "default": "",
                 "examples": [
                   ""
@@ -239,7 +239,7 @@
                 "$id": "#/properties/channels/items/anyOf/0/properties/channel_id",
                 "type": "string",
                 "title": "channel_id",
-                "description": "Id of channel to post to",
+                "description": "Enter channel ID (eg. 898129644522459136)",
                 "default": "",
                 "examples": [
                   "898129644522459136"
@@ -249,7 +249,7 @@
                 "$id": "#/properties/channels/items/anyOf/0/properties/post_every",
                 "type": "number",
                 "title": "Time between 2 messages",
-                "description": "Enter time in minutes",
+                "description": "Enter time in minutes (eg. 5.0)",
                 "default": 5.0,
                 "examples": [
                   0.5
