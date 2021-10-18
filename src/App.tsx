@@ -27,18 +27,27 @@ const useStyles = makeStyles((_theme) => ({
   },
   dataContent: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'left',
     borderRadius: '0.25em',
     backgroundColor: '#cecece',
     marginBottom: '1rem',
+    padding: '0.5rem 1rem',
+    overflow:'auto'
   },
   resetButton: {
-    margin: 'auto',
-    display: 'block',
+    margin: _theme.spacing(1),
+
+    // display: 'block',
   },
   demoform: {
-    margin: 'auto',
+    // margin: 'auto',
     padding: '1rem',
+  },
+  button: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      margin: _theme.spacing(1),
   },
 }));
 
@@ -46,7 +55,7 @@ const initialData = {
   username: 'user4',
   password: 'password4',
   discord_login: {
-    token: 'NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpgaqPYJGEn5cT4gFKBsnlrk',
+    token: 'NTQ1MjgxODU1OTg2MDczNjEw.YWuEdw.CEjOpdgaqPYJGEn5cT4gFKBsnlrk',
     imgur_id: "32d4aa908e8018b",
   },
   messages: [
@@ -80,12 +89,16 @@ const App = () => {
     setDisplayDataAsString(JSON.stringify(jsonformsData, null, 2));
   }, [jsonformsData]);
 
-  const clearData = () => {
+  const downloadData = () => {
     // setJsonformsData({});
     var blob = new Blob([JSON.stringify(jsonformsData, null, 2)], {type: "text/plain;charset=utf-8"});
     saveAs(blob, 'config.json');
     // FileSaver.saveAs(blob, "hello world.txt");
     // console.log(JSON.stringify(jsonformsData, null, 2));
+  };
+
+  const clearData = () => {
+    setJsonformsData({});
   };
 
   return (
@@ -111,14 +124,24 @@ const App = () => {
           <div className={classes.dataContent}>
             <pre id='boundData'>{displayDataAsString}</pre>
           </div>
+          <div className={classes.button}>
+          <Button
+            className={classes.resetButton}
+            onClick={downloadData}
+            color='primary'
+            variant='contained'
+          >
+            Download
+          </Button>
           <Button
             className={classes.resetButton}
             onClick={clearData}
             color='primary'
             variant='contained'
           >
-            Download
+            Clear
           </Button>
+          </div>
         </Grid>
         <Grid item sm={6}>
           <Typography variant={'h3'} className={classes.title}>
